@@ -1,11 +1,6 @@
 class Solution {
     public int missingNumber(int[] nums) {
         HashMap<Integer,Integer> hm=new HashMap<>();
-        if(nums.length==1){
-            if(nums[0]>=1){
-                return 0;
-            }
-        }
         Arrays.sort(nums);
         if(nums[0]!=0){
             return 0;
