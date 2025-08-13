@@ -1,27 +1,37 @@
 import java.util.*;
 
 class Solution {
-    public List<List<Integer>> threeSum(int[] nums) {
-        Set<List<Integer>> set = new LinkedHashSet<>();
-        Arrays.sort(nums);
+    public List<List<Integer>> threeSum(int[] arr) {
+        List<List<Integer>> ans = new ArrayList<>();
+        Arrays.sort(arr);
 
-        for (int i = 0; i < nums.length - 2; i++) {
-            int left = i + 1, right = nums.length - 1;
+        for (int i = 0; i < arr.length - 2; i++) {
+            if (i > 0 && arr[i] == arr[i - 1]) continue;
 
-            while (left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
+            int a = arr[i];
+            int j = i + 1;
+            int k = arr.length - 1;
+
+            while (j < k) {
+                int sum = a + arr[j]+arr[k];
 
                 if (sum == 0) {
-                    set.add(Arrays.asList(nums[i], nums[left], nums[right]));
-                    left++;
-                    right--;
-                } else if (sum < 0) {
-                    left++;
-                } else {
-                    right--;
+                    ans.add(Arrays.asList(a, arr[j], arr[k]));
+                    while (j < k && arr[j] == arr[j + 1]) j++;
+                    while (j < k && arr[k] == arr[k - 1]) k--;
+
+                    j++;
+                    k--;
+                } 
+                else if (sum< 0) {
+                    j++;
+                } 
+                else {
+                    k--;
                 }
             }
         }
-        return new ArrayList<>(set);
+
+        return ans;
     }
 }
