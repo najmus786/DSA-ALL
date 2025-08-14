@@ -1,9 +1,8 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int n=nums.length;
         int writer=0;
-        for(int reader=1;reader<n;reader++){
-            if(nums[writer]!=nums[reader]){
+        for(int reader=1;reader<nums.length;reader++){
+            if(nums[reader]!=nums[writer]){
                 writer++;
                 nums[writer]=nums[reader];
             }
