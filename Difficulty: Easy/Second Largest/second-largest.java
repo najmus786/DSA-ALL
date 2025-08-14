@@ -4,19 +4,22 @@ class Solution {
             return -1;
         }
         // code here
-        PriorityQueue<Integer> pq=new PriorityQueue<>(Collections.reverseOrder());
-        Set<Integer> set=new HashSet<>();
-        for(int a:arr){
-            set.add(a);
+        int min=Math.min(arr[0],arr[1]);
+        int max=Math.max(arr[0],arr[1]);
+        for(int i=2;i<arr.length;i++){
+            if((arr[i]==min)||(arr[i]==max)){
+                continue;
+            }
+            if(arr[i]>min && arr[i]>max){
+                min=max;
+                max=arr[i];
+            }else if(arr[i]>min&&arr[i]<max){
+                min=arr[i];
+            }
         }
-        for(int a:set){
-            pq.add(a);
-        }
-        int k=pq.remove();
-        if(pq.size()==0){
+        if(min==max){
             return -1;
         }
-        int m=pq.remove();
-        return m;
+        return min;
     }
 }
