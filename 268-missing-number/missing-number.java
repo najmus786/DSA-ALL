@@ -1,20 +1,12 @@
 class Solution {
     public int missingNumber(int[] nums) {
-        HashMap<Integer,Integer> hm=new HashMap<>();
-        Arrays.sort(nums);
-        if(nums[0]!=0){
-            return 0;
+        int missNumber=0;
+        for(int i=0;i<=nums.length;i++){
+            missNumber^=i;
         }
         for(int a:nums){
-            hm.put(a,1);
+            missNumber ^=a;
         }
-        for(int a:nums){
-            if(hm.containsKey(a+1)){
-                continue;
-            }else{
-                return a+1;
-            }
-        }
-        return nums.length;
+        return missNumber;
     }
 }
