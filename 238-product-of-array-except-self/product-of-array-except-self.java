@@ -8,7 +8,7 @@ class Solution {
         }
         int suff=1;
         for(int j=n-1;j>=0;j--){
-            ans[j]=ans[j]*suff;
+            ans[j]*=suff;
             suff*=nums[j];
         }
         return ans;
