@@ -14,29 +14,20 @@
  * }
  */
 class Solution {
-    public boolean isIdentical(TreeNode root,TreeNode subRoot){
-        if(root==null && subRoot==null){
-            return true;
-        }else if(root==null || subRoot==null || root.val!=subRoot.val){
-            return false;
+    public void serialize(TreeNode root,StringBuilder sb){
+        if(root==null){
+            sb.append("# ");
+            return ;
         }
-        if(!isIdentical(root.left,subRoot.left)){
-            return false;
-        }
-        if(!isIdentical(root.right,subRoot.right)){
-            return false;
-        }
-        return true;
+        sb.append("(").append(root.val).append(") ");
+        serialize(root.left,sb);
+        serialize(root.right,sb);
     }
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        if(root==null){
-            return false;
-        }
-        if(root.val==subRoot.val){
-            if(isIdentical(root,subRoot)){
-                return true;
-            }
-        }
-        return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
+        StringBuilder s1=new StringBuilder();
+        StringBuilder s2=new StringBuilder();
+        serialize(root,s1);
+        serialize(subRoot,s2);
+        return s1.toString().contains(s2.toString());
     }
 }
