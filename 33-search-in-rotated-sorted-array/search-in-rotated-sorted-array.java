@@ -6,6 +6,12 @@ class Solution {
             int mid = l + (r - l) / 2;
             
             if (nums[mid] == target) return mid;
+
+             if (nums[l] == nums[mid]) {
+                l++;
+                continue;
+            }
+
             
             if (nums[l] <= nums[mid]) {
                 if (nums[l] <= target && target < nums[mid]) {
